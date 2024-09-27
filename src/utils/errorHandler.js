@@ -7,7 +7,7 @@ function errorHandler(err,req,res,next)
    
     if(err instanceof BaseError)
     {
-        res.status(err.statusCode).json({
+        return res.status(err.statusCode).json({
 
            success : false,
            message : "The request was not successfull",

@@ -2,6 +2,8 @@ const {Problem} = require("../models")
 
 const {NotFound} = require("../errors")
 
+const logger = require("../config/logger.config")
+
 class ProblemRepository {
 
    async createProblem(problemData)
@@ -29,17 +31,18 @@ class ProblemRepository {
    {
 
     try{
-      const problem = await Problem.findById(id)
-       if(!problem)
+      const problem = await Problem.findOne({_id : id})
+
+      if(!problem)
        {
             throw new NotFound("problem",id)           
        }
-
 
        return problem
     }
     catch(err)
     {
+        logger.error(`The problem with id : ${id} doesn't exist in the database, Error name : ${err.name}`)
         throw err
     }
 

@@ -30,9 +30,6 @@ class ProblemService {
         
         const problem = await this.problemRepository.getProblem(id)
 
-        console.log(`${problem}  service`)
-
-        console.log(problem)
  
         return problem
 
